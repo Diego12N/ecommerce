@@ -24,6 +24,7 @@ export default function App() {
 				value: task,
 				background: getRandomBackgroundColor(),
 				done: false,
+				check: "done",
 			},
 		]);
 		setTask("");
@@ -36,7 +37,6 @@ export default function App() {
 
 	const onHandleSelected = (item) => {
 		setSelectedTask(item);
-
 		setModalVisible(!modalVisible);
 	};
 
@@ -44,6 +44,8 @@ export default function App() {
 		const updatedList = taskList.map((item) => {
 			if (selectedTask.id === item.id) {
 				item.done = !item.done;
+				item.check = "pending";
+				setSelectedTask(item);
 				return item;
 			} else {
 				return item;
@@ -115,7 +117,15 @@ export default function App() {
 					</View>
 					<View style={styles.modalButtonContainer}>
 						<Button title="Cancel" color="#9A848F" onPress={onHandleCancel} />
-						<Button title="Done" color="#9A848F" onPress={onHandleDone} />
+						<Button
+							title={
+								selectedTask !== null && selectedTask.done === true
+									? selectedTask.check
+									: "done"
+							}
+							color="#9A848F"
+							onPress={onHandleDone}
+						/>
 						<Button
 							title="Delete"
 							color="#9A848F"
