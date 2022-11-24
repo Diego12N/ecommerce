@@ -26,7 +26,9 @@ export const styles = StyleSheet.create({
 		color: "#212121",
 	},
 	listItemContainer: {
+		flexDirection: "row",
 		paddingVertical: 20,
+		paddingHorizontal: 20,
 		backgroundColor: "#9A848F",
 		borderRadius: 5,
 		shadowColor: "#000",
@@ -37,7 +39,7 @@ export const styles = StyleSheet.create({
 		shadowOpacity: 0.25,
 		shadowRadius: 3.84,
 		elevation: 5,
-		justifyContent: "center",
+		justifyContent: "space-between",
 		marginVertical: 5,
 	},
 	listItem: {
@@ -74,5 +76,17 @@ export const styles = StyleSheet.create({
 		flexDirection: "row",
 		justifyContent: "space-around",
 		marginHorizontal: 20,
+	},
+	circular: {
+		width: 25,
+		height: 25,
+		backgroundColor: "red",
+		borderRadius: 20,
+	},
+	circularDone: {
+		width: 25,
+		height: 25,
+		backgroundColor: "green",
+		borderRadius: 20,
 	},
 });

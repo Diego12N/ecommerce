@@ -23,6 +23,7 @@ export default function App() {
 				id: Math.random().toString(),
 				value: task,
 				background: getRandomBackgroundColor(),
+				done: false,
 			},
 		]);
 		setTask("");
@@ -35,6 +36,21 @@ export default function App() {
 
 	const onHandleSelected = (item) => {
 		setSelectedTask(item);
+
+		setModalVisible(!modalVisible);
+	};
+
+	const onHandleDone = () => {
+		const updatedList = taskList.map((item) => {
+			if (selectedTask.id === item.id) {
+				item.done = !item.done;
+				return item;
+			} else {
+				return item;
+			}
+		});
+
+		setTaskList(updatedList);
 		setModalVisible(!modalVisible);
 	};
 
@@ -44,6 +60,11 @@ export default function App() {
 			onPress={() => onHandleSelected(item)}
 		>
 			<Text style={styles.listItem}>{item.value}</Text>
+			{item.done != false ? (
+				<View style={styles.circularDone}></View>
+			) : (
+				<View style={styles.circular}></View>
+			)}
 		</TouchableOpacity>
 	);
 
@@ -94,6 +115,7 @@ export default function App() {
 					</View>
 					<View style={styles.modalButtonContainer}>
 						<Button title="Cancel" color="#9A848F" onPress={onHandleCancel} />
+						<Button title="Done" color="#9A848F" onPress={onHandleDone} />
 						<Button
 							title="Delete"
 							color="#9A848F"
