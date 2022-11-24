@@ -62,11 +62,9 @@ export default function App() {
 			onPress={() => onHandleSelected(item)}
 		>
 			<Text style={styles.listItem}>{item.value}</Text>
-			{item.done != false ? (
-				<View style={styles.circularDone}></View>
-			) : (
-				<View style={styles.circular}></View>
-			)}
+			<View
+				style={item.done != false ? styles.circularDone : styles.circular}
+			></View>
 		</TouchableOpacity>
 	);
 
